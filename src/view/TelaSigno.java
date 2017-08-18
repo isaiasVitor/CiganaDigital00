@@ -1,36 +1,39 @@
 package view;
 
 import java.awt.Component;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static jdk.nashorn.internal.objects.NativeString.charAt;
 import model.InputMask;
 import model.Usuario;
+import model.dao.SignosDao;
 import model.inputText;
 
 public class TelaSigno extends javax.swing.JFrame implements inputText {
-
-    /**
-     * Creates new form TelaSigno
-     */
    
     public TelaSigno() {
        initComponents();
        String datenasc;
-        if(TelaPrincipal.lista.get(0).isDateRunning()){
+        if(Usuario.dateRunning){
             // variavel que recebe a data no formato STRING
             datenasc = inputBox(this, "Digite um valor para data", "Pesquisa de data", "##/##/####");
-            // Salva na lista no formato DD/MM/AAAA
-            TelaPrincipal.lista.get(0).setDataNascimento(datenasc);
+            // Salva na variavel Static datenasc no formato DD/MM/AAAA
+            Usuario.dataNascimento = datenasc;
             // coloca false na dateRunning para o usuario não digitar duas vezes a data
-            TelaPrincipal.lista.get(0).setDateRunning(false);
+            Usuario.dateRunning = false;
         }else{
             // caso o usuario tenha feito tempo de vida primeiro, ele busca na LISTA a data no formato STRING DD/MM/AAAA
-            datenasc = TelaPrincipal.lista.get(0).getDataNascimento();
+            datenasc = Usuario.dataNascimento;
         }
+        
+        int dia = Integer.parseInt(charAt(datenasc, 0));
+        dia = (dia * 10) + Integer.parseInt(charAt(datenasc, 1));
+        
+        int mes = Integer.parseInt(charAt(datenasc, 3));
+        mes = (mes * 10) + Integer.parseInt(charAt(datenasc, 4));
+        
+        SignosDao signod = new SignosDao();
+        jData.setText(signod.buscaSigno(Usuario.encontraSigno(dia, mes)));
             // jlabel pra testar a data, 
-        jData.setText(datenasc);
+        
     }
     
     @SuppressWarnings("unchecked")

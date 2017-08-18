@@ -6,16 +6,16 @@ import java.util.Date;
 
 public class Usuario {
 
-    private String nome;
-    private String dataNascimento;
-    private Integer dataEspiritual;
-    private Boolean running;
-    private Boolean dateRunning;
+    public static String nome;
+    public static String dataNascimento;
+    public static Integer dataEspiritual;
+    public static Boolean running;
+    public static Boolean dateRunning;
     
-    public Usuario(String nome, Boolean running) {
-        this.nome = nome;
-        this.running = running;
-        this.dateRunning = true;
+    public Usuario(String nome) {
+    Usuario.nome = nome;
+    Usuario.running = true;
+    Usuario.dateRunning = true;
     }
 
     public boolean isDateRunning() {
@@ -23,7 +23,7 @@ public class Usuario {
     }
 
     public void setDateRunning(Boolean dateRunning) {
-        this.dateRunning = dateRunning;
+        Usuario.dateRunning = dateRunning;
     }
     
     public boolean isRunning() {
@@ -31,7 +31,7 @@ public class Usuario {
     }
 
     public void setRunning(Boolean running) {
-        this.running = running;
+        Usuario.running = running;
     }
 
     public String getDataNascimento() {
@@ -39,7 +39,7 @@ public class Usuario {
     }
 
     public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
+        Usuario.dataNascimento = dataNascimento;
     }
 
     public String getNome() {
@@ -47,7 +47,7 @@ public class Usuario {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        Usuario.nome = nome;
     }
 
     public Integer getDataEspiritual() {
@@ -55,7 +55,7 @@ public class Usuario {
     }
 
     public void setDataEspiritual(Integer dataEspiritual) {
-        this.dataEspiritual = dataEspiritual;
+        Usuario.dataEspiritual = dataEspiritual;
     }
 
    public static Date stringToDate(String data1) {
@@ -66,6 +66,35 @@ public class Usuario {
             d1 = f.parse(data1);
         } catch (ParseException e) {}
         return d1;
+    }
+   public static String encontraSigno(int dia, int mes){   
+        if((dia >= 20 && mes == 3) || ( dia <=20 && mes == 4)){
+            return "Aries";
+        }else if((dia >=21 && mes == 4) || (dia <= 20 && mes == 5)){
+                    return "Touro";
+            }else if((dia >= 21 && mes == 5) || (dia <=20 && mes ==6)){
+                        return "Gemeos" ;
+                    }else if((dia >= 21 && mes == 6) || (dia <=21 && mes ==7)){
+                              return "Cancer";
+                        }else if((dia >= 22 && mes == 7) || (dia <=22 && mes ==8)){
+                                    return "Leao";
+                            }else if((dia >= 23 && mes == 8) || (dia <=22 && mes ==9)){
+                                        return "Virgem";
+                                }else if((dia >= 23  && mes == 9) || (dia <= 22 && mes == 10)){
+                                            return "Libra";
+                                    }else if((dia >= 23 && mes == 10) || (dia <= 21 && mes ==11)){
+                                                System.out.println("Escorpião");
+                                        }else if((dia >= 22 && mes == 11) || (dia <= 21 && mes == 12)){
+                                                     return "Sagitario";
+                                            }else if((dia >= 22 && mes == 12) || (dia <= 21 && mes == 1)){
+                                                         return "Capricornio";
+                                                }else if((dia >= 21 && mes == 1) || (dia <= 18 && mes == 2)){
+                                                             return "Aquario";
+                                                    }else if((dia >= 19 && mes == 2) || (dia <= 19 && mes == 3)){
+                                                                 return "Peixes";
+                                                    }
+        return null;
+        
     }
    
   

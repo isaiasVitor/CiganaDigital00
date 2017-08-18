@@ -1,6 +1,8 @@
 
 package view;
 
+import model.Usuario;
+
 public class TempoDeVida extends javax.swing.JFrame {
 
     /**
@@ -8,7 +10,7 @@ public class TempoDeVida extends javax.swing.JFrame {
      */
     public TempoDeVida() {
         initComponents();
-        jlblNome.setText("Teste seu tempo " + TelaPrincipal.lista.get(0).getNome());
+        jlblNome.setText("Teste seu tempo " + Usuario.nome);
     }
 
     /**

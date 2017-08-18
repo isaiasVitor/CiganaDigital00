@@ -1,5 +1,7 @@
 package view;
 
+import model.Usuario;
+
 public class menuPrincipal extends javax.swing.JFrame {
 
     public menuPrincipal() {
@@ -89,7 +91,6 @@ public class menuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnVoltarMouseClicked
-        TelaPrincipal.lista.remove(0);
         this.dispose();
         TelaPrincipal principal = new TelaPrincipal();
         principal.setVisible(true);
@@ -102,7 +103,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jbtnTempodeVidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnTempodeVidaMouseClicked
-        if(TelaPrincipal.lista.get(0).isRunning()){
+        if(Usuario.running){
             TempoDeVida tempo = new TempoDeVida();
             tempo.setVisible(true);
             this.dispose();

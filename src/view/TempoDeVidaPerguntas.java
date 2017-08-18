@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import model.Perguntas;
+import model.Usuario;
 import model.dao.PerguntasDao;
 
 public class TempoDeVidaPerguntas extends javax.swing.JFrame  {
@@ -30,7 +31,7 @@ public class TempoDeVidaPerguntas extends javax.swing.JFrame  {
         jrdioD.setVisible(true);
         
         Random rnd = new Random();
-        random = rnd.nextInt(4);
+        random = rnd.nextInt(39);
         
         if(pgt.get(random).getAlternativaC()==null){
             jrdioC.setVisible(false);
@@ -156,8 +157,8 @@ public class TempoDeVidaPerguntas extends javax.swing.JFrame  {
     
     
     private void jrdioAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrdioAMouseClicked
-        if(contador == 30){
-            TelaPrincipal.lista.get(0).setDataEspiritual(soma);
+        if(contador == 5){
+            Usuario.dataEspiritual = soma;
             TempoDeVidaFinal tmpvdfinal = new TempoDeVidaFinal();
             tmpvdfinal.setVisible(true);       
             this.dispose();

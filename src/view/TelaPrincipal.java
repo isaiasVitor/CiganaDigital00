@@ -8,11 +8,10 @@ import javax.swing.JOptionPane;
 import model.Usuario;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-    public static List<Usuario> lista;
+    
     public List<String> textoString;
     public TelaPrincipal() {
         initComponents();
-        lista = new ArrayList<>();
         textoString = new ArrayList<>();
     }
     @SuppressWarnings("unchecked")
@@ -83,8 +82,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             if (jTexto.getText().trim().equals("") || jTexto.getText()== null){
                 JOptionPane.showMessageDialog(null, "Campo Vazio");
             }else{
-                Usuario us = new Usuario(jTexto.getText().toUpperCase(),true);
-                lista.add(us);
+                Usuario us = new Usuario(jTexto.getText().toUpperCase());
+                
                 menuPrincipal menu = new menuPrincipal();
                 menu.setVisible(true);
                 this.dispose();
@@ -101,6 +100,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /*public boolean eLetra(java.awt.event.KeyEvent evt){
         return !((evt.getKeyCode()) >= 33 && evt.getKeyCode() <= 64 || evt.getKeyCode() >= 91 && evt.getKeyCode() <= 93 || evt.getKeyCode() >= 123 && evt.getKeyCode() <= 159 || evt.getKeyCode() >= 162 && evt.getKeyCode() <= 191);
     }
+    
     */
     /**
      * @param args the command line arguments

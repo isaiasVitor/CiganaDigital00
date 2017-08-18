@@ -7,18 +7,9 @@ import java.util.Random;
 import model.InputMask;
 import model.Usuario;
 import model.inputText;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.Days;
-import org.joda.time.Months;
-import org.joda.time.Period;
-import org.joda.time.Years;
-import org.joda.time.format.PeriodFormatter;
-import org.joda.time.format.PeriodFormatterBuilder;
-/**
- *
- * @author isaias
- */
+import org.joda.time.*;
+import org.joda.time.format.*;
+
 public class TempoDeVidaFinal extends javax.swing.JFrame implements inputText {
 
     public TempoDeVidaFinal() {
@@ -31,11 +22,11 @@ public class TempoDeVidaFinal extends javax.swing.JFrame implements inputText {
         String morte;
         // fim variaveis locais
         // Atribuição de valores
-        if(TelaPrincipal.lista.get(0).isDateRunning()){
+        if(Usuario.dateRunning){
             datenasc = inputBox(this, "Digite um valor para data", "Pesquisa de data", "##/##/####");
-            TelaPrincipal.lista.get(0).setDateRunning(false);
+            Usuario.dateRunning = false;
         }else{
-            datenasc = TelaPrincipal.lista.get(0).getDataNascimento();
+            datenasc = Usuario.dataNascimento;
         }
         dataNasc = getAniversariante(Usuario.stringToDate(datenasc));
         Hoje = getDataAtual();
@@ -50,19 +41,19 @@ public class TempoDeVidaFinal extends javax.swing.JFrame implements inputText {
             .appendDays()
             .appendSuffix (" dia ", " dias ")
             .toFormatter();
-        morte = getMorte(per, TelaPrincipal.lista.get(0).getDataEspiritual());
+        morte = getMorte(per, Usuario.dataEspiritual);
         // fim de atribuição
         initComponents();
         //escrevendo no form
-        jNome.setText(TelaPrincipal.lista.get(0).getNome());
-        jIdadeEspiritual.setText(String.valueOf(TelaPrincipal.lista.get(0).getDataEspiritual()));
+        jNome.setText(Usuario.nome);
+        jIdadeEspiritual.setText(String.valueOf(Usuario.dataEspiritual));
         jIdadeUsuario.setText(pf.print(per));
         jJavivi.setText(getDiasTotais(dataNasc,Hoje));
         jMorte.setText(morte);
         // fim escrevendo no form
         // adicionando a lista
-        TelaPrincipal.lista.get(0).setRunning(false);
-        TelaPrincipal.lista.get(0).setDataNascimento(datenasc);
+        Usuario.running = false;
+        Usuario.dataNascimento=datenasc;
     }
     
     // metodos para calcular o tempo total de vida
