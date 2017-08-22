@@ -11,10 +11,12 @@ public class TelaSigno extends javax.swing.JFrame implements inputText {
    
     public TelaSigno() {
        initComponents();
-       String datenasc;
+       String datenasc = "01/01/1900";
         if(Usuario.dateRunning){
             // variavel que recebe a data no formato STRING
             datenasc = inputBox(this, "Digite um valor para data", "Pesquisa de data", "##/##/####");
+            while(!Usuario.validaData(datenasc))
+                datenasc = inputBox(this, "Digite um valor para data", "Pesquisa de data", "##/##/####");
             // Salva na variavel Static datenasc no formato DD/MM/AAAA
             Usuario.dataNascimento = datenasc;
             // coloca false na dateRunning para o usuario não digitar duas vezes a data

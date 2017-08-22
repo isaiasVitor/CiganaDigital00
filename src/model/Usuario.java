@@ -3,6 +3,8 @@ package model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
+import static jdk.nashorn.internal.objects.NativeString.charAt;
 
 public class Usuario {
 
@@ -97,5 +99,109 @@ public class Usuario {
         
     }
    
+     public static boolean validaData(String data1){
+      String nomeMes = String.valueOf(pegaMes(data1));
+        switch (nomeMes) {
+            case "1":
+            case "01":
+                nomeMes = "Janeiro";
+                break;
+            case "02":
+            case "2":
+                nomeMes = "Fevereiro";
+                break;
+            case "03":
+            case "3":
+                nomeMes = "Março"; 
+                break;
+            case "4":
+            case "04":
+                nomeMes = "Abril";
+                break;
+            case "05":
+            case "5":
+                nomeMes = "Maio";
+                break;
+            case "6":
+            case "06":
+                nomeMes = "Junho";
+                break;
+            case "07":
+            case "7":
+                nomeMes = "Julho"; 
+                break;
+            case "08":
+            case "8": 
+                nomeMes = "Agosto"; 
+                break;
+            case "9":
+            case "09":
+                nomeMes = "Setembro";
+                break;
+            case "10":
+                nomeMes = "Outubro"; 
+                break;    
+            case "11":
+                nomeMes = "Novembro";
+                break;
+            default:
+                break;
+            case "12":
+                nomeMes = "Dezembro"; 
+                break;    
+        }
+       
+        //valida dia ou mes 0
+        if(pegaDia(data1)>0 || pegaMes(data1)> 0){
+            // valida mes fevereiro (max 28 dias)
+            if(pegaMes(data1)==2){
+               if(pegaDia(data1)>29){
+                   JOptionPane.showMessageDialog(null, nomeMes + " tem 28 dias (29 dias nos anos bissextos) ");
+                   return false;
+               }
+            } 
+
+            // valida meses com MAX 30 dias
+            if(pegaMes(data1)== 4 ||pegaMes(data1)== 6 || pegaMes(data1)== 9 || pegaMes(data1)== 11){
+                if(pegaDia(data1)>30){
+                    JOptionPane.showMessageDialog(null, nomeMes + " Tem 30 dias");
+                    return false;
+                }
+            }
+
+            // valida meses com MAX 31 dias
+            if(pegaMes(data1) == 1 || pegaMes(data1) == 3 || pegaMes(data1) == 5 || pegaMes(data1) == 7 || pegaMes(data1) == 8 || pegaMes(data1) == 10 || pegaMes(data1) == 12 ){
+                if(pegaDia(data1) > 31){
+                    JOptionPane.showMessageDialog(null, nomeMes + " Tem 31 dias");
+                    return false;
+                }
+            }
+
+            // valida 12 meses
+            if (pegaMes(data1)>12){
+                JOptionPane.showMessageDialog(null, "Um ano possui apenas 12 meses, digite novamente");
+                return false;
+            }
+           
+        }else {
+            JOptionPane.showMessageDialog(null, "Dia ou Mes Invalido, tente novamente");
+            return false;
+        }
+       return true;
+   }
+     
+     public static int pegaDia(String datenasc){
+       int dia = Integer.parseInt(charAt(datenasc, 0));
+       dia = (dia * 10) + Integer.parseInt(charAt(datenasc, 1));
+        
+      return dia; 
+   }
+   
+   public static int pegaMes(String datenasc){
+       int mes = Integer.parseInt(charAt(datenasc, 3));
+       mes = (mes * 10) + Integer.parseInt(charAt(datenasc, 4));
+       
+       return mes;
+   }
   
 }
